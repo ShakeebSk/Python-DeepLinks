@@ -4,14 +4,14 @@ A Python backend companion library that converts standard web URLs into platform
 
 ## Installation
 
-You can install the package using pip:
-
+You can install the package from source:
+<!-- 
 ```bash
 pip install pydeeplinks
 ```
 
 Or install from source:
-
+ -->
 ```bash
 git clone https://github.com/ShakeebSk/Python-DeepLinks.git
 cd Python-DeepLinks
