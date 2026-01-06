@@ -47,10 +47,10 @@ class YouTubeHandler(HandlerType[YouTubeMatch]):
         if not video_id:
             return None
 
-        return {
-            "video_id": video_id,
-            "timestamp": int(timestamp) if timestamp else None,
-        }
+        return YouTubeMatch(
+            video_id=video_id,
+            timestamp=int(timestamp) if timestamp else None,
+        )
 
     def generate_url(self, match_result: YouTubeMatch) -> DeepLinkUrls:
         if match_result["timestamp"]:

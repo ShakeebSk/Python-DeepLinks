@@ -23,7 +23,7 @@ class LinkedInHandler(HandlerType[LinkedInMatch]):
         for url_type, pattern in self.patterns:
             match = re.match(pattern, self.url)
             if match:
-                return {"url_type": url_type, "id": match.group(1)}
+                return LinkedInMatch(url_type=url_type, id=match.group(1))
         return None
 
     def generate_url(self, match_result: LinkedInMatch) -> DeepLinkUrls:
