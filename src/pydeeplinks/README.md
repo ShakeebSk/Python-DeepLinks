@@ -1,6 +1,6 @@
 # PyDeepLinks
 
-A Python backend companion library that converts standard web URLs into platform-specific deep links. It detects the target platform and generates Android intent links, iOS deep links, and web fallbacks for server-side use cases.
+A Python backend companion library that converts standard web URLs into platform-specific deep links. It generates Android intent links, iOS deep links, and web fallbacks for server-side use cases.
 
 ## Installation
 
@@ -87,6 +87,18 @@ Currently supported platforms include:
     #     "web": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     #     "ios": "vnd.youtube://watch/dQw4w9WgXcQ", 
     #     "android": "intent://watch?v=dQw4w9WgXcQ#Intent;scheme=vnd.youtube;package=com.google.android.youtube;end"
+    # }
+    ```
+- **Discord**: Generates `discord://` for iOS and `intent://` for Android.
+    ```python
+    url = "https://discord.gg/MWwnUKaq"
+    links = generate_deep_link(url)
+    print(links)
+    # Output:
+    # {
+    #     "web": "https://discord.gg/MWwnUKaq",
+    #     "ios": "discord://invite/MWwnUKaq",
+    #     "android": "intent://discord.gg/MWwnUKaq#Intent;scheme=discord;package=com.discord;end"
     # }
     ```
 - **Unknown/Generic**: Fallback for unsupported URLs, returning the original URL for all keys.

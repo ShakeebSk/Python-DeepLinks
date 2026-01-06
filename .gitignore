@@ -123,8 +123,8 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# PyCharm
-.idea/
-
 # Ruff
 .ruff_cache/
+
+# PyCharm
+.idea/
