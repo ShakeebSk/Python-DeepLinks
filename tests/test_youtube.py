@@ -35,15 +35,13 @@ def test_youtube_deep_link_generation(url, expected_id, expected_timestamp):
         pytest.fail("Implementation raised AttributeError, likely due to dict/object mismatch in generate_url")
 
     if expected_timestamp:
-        expected_suffix = f"v={expected_id}&t={expected_timestamp}"
+        assert deep_links["android"] == f"intent://watch?v={expected_id}&t={expected_timestamp}#Intent;scheme=vnd.youtube;package=com.google.android.youtube;end"
+        assert deep_links["ios"] == f"vnd.youtube://watch?v={expected_id}&t={expected_timestamp}"
     else:
-        expected_suffix = f"v={expected_id}"
+        assert deep_links["android"] == f"intent://watch?v={expected_id}#Intent;scheme=vnd.youtube;package=com.google.android.youtube;end"
+        assert deep_links["ios"] == f"vnd.youtube://watch?v={expected_id}"
 
-    assert expected_suffix in deep_links["ios"]
-    assert expected_suffix in deep_links["android"]
-    assert "vnd.youtube://" in deep_links["ios"]
-    assert "intent://" in deep_links["android"]
-    assert deep_links["web"].startswith("www") or deep_links["web"].startswith("youtube") or "youtu.be" in deep_links["web"]
+    assert deep_links["web"] == url.replace("https://", "").replace("http://", "")
 
 
 def test_invalid_urls():

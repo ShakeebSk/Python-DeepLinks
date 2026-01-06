@@ -31,10 +31,11 @@ def test_linkedin_deep_link_generation(url, url_type, expected_id):
     except AttributeError:
         pytest.fail("Implementation raised AttributeError, likely due to dict/object mismatch in generate_url")
 
-    assert deep_links["ios"].startswith("linkedin://")
-    assert deep_links["android"].startswith("intent://")
-    assert deep_links["android"].endswith("#Intent;scheme=https;package=com.linkedin.android;end")
-    assert deep_links["web"].startswith("www.linkedin.com/") or deep_links["web"].startswith("linkedin.com/")
+    web_deeplink = url.replace("https://", "").replace("http://", "")
+
+    assert deep_links["ios"] == f"linkedin://{url_type}/{expected_id}"
+    assert deep_links["android"] == f"intent://{web_deeplink.replace('www.', '')}#Intent;scheme=https;package=com.linkedin.android;end"
+    assert deep_links["web"] == web_deeplink
 
 
 def test_invalid_urls():
