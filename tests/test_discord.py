@@ -15,7 +15,7 @@ import pytest
         ("https://discord.gg/MWwnUKaq", "invite", None, None, "MWwnUKaq"),
     ],
 )
-def test_linkedin_deep_link_generation(url, url_type, guild, channel, invite):
+def test_discord_deep_link_generation(url, url_type, guild, channel, invite):
     handler = DiscordHandler(url)
     match = handler.match_pattern()
 
