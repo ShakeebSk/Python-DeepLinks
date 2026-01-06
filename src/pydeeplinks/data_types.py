@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from re import Pattern
-from typing import Generic, TypedDict, TypeVar
+from typing import TypedDict
 
 from .utils import get_url_without_scheme
 
@@ -15,12 +15,9 @@ class HandlerMatch(TypedDict):
     pass
 
 
-T = TypeVar("T", bound=HandlerMatch)
-
-
-class HandlerType(ABC, Generic[T]):
+class HandlerType[T](ABC):
     name: str
-    patterns: list[Pattern[str]]
+    patterns: list[Pattern[str]] | list[tuple[str, Pattern[str]]]
     url: str
 
     def __init__(self, url: str):

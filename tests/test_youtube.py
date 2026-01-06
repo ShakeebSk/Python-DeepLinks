@@ -32,9 +32,7 @@ def test_youtube_deep_link_generation(url, expected_id, expected_timestamp):
     try:
         deep_links = handler.generate_url(match)
     except AttributeError:
-        pytest.fail(
-            "Implementation raised AttributeError, likely due to dict/object mismatch in generate_url"
-        )
+        pytest.fail("Implementation raised AttributeError, likely due to dict/object mismatch in generate_url")
 
     if expected_timestamp:
         expected_suffix = f"v={expected_id}&t={expected_timestamp}"
@@ -45,11 +43,7 @@ def test_youtube_deep_link_generation(url, expected_id, expected_timestamp):
     assert expected_suffix in deep_links["android"]
     assert "vnd.youtube://" in deep_links["ios"]
     assert "intent://" in deep_links["android"]
-    assert (
-        deep_links["web"].startswith("www")
-        or deep_links["web"].startswith("youtube")
-        or "youtu.be" in deep_links["web"]
-    )
+    assert deep_links["web"].startswith("www") or deep_links["web"].startswith("youtube") or "youtu.be" in deep_links["web"]
 
 
 def test_invalid_urls():
@@ -60,5 +54,4 @@ def test_invalid_urls():
     ]
     for url in invalid_urls:
         handler = YouTubeHandler(url)
-        assert handler.match_pattern() is None
         assert handler.match_pattern() is None
