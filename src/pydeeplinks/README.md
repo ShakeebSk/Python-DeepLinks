@@ -34,7 +34,7 @@ print(links)
 # {
 #     'web': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
 #     'ios': 'vnd.youtube://watch/dQw4w9WgXcQ', 
-#     'android': 'intent://www.youtube.com/watch?v=dQw4w9WgXcQ#Intent;package=com.google.android.youtube;scheme=https;end'
+#     'android': 'intent://watch?v=dQw4w9WgXcQ#Intent;package=com.google.android.youtube;scheme=https;end'
 # }
 ```
 
@@ -64,8 +64,43 @@ class DeepLinkUrls(TypedDict):
 ## Supported Platforms
 
 Currently supported platforms include:
+
+- **LinkedIn**: Generates `linkedin://` for iOS and `intent://` for Android.
+    ```python
+    url = "https://www.linkedin.com/in/kishandev2509/"
+    links = generate_deep_link(url)
+    print(links)
+    # Output:
+    # {
+    #     "web": "https://www.linkedin.com/in/kishandev2509/",
+    #     "ios": "linkedin://profile/kishandev2509",
+    #     "android": "intent://www.linkedin.com/in/kishandev2509/#Intent;scheme=https;package=com.linkedin.android;end"
+    # }
+    ```
 - **YouTube**: Generates `vnd.youtube://` for iOS and `intent://` for Android.
+    ```python
+    url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    links = generate_deep_link(url)
+    print(links)
+    # Output:
+    # {
+    #     "web": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    #     "ios": "vnd.youtube://watch/dQw4w9WgXcQ", 
+    #     "android": "intent://watch?v=dQw4w9WgXcQ#Intent;scheme=vnd.youtube;package=com.google.android.youtube;end"
+    # }
+    ```
 - **Unknown/Generic**: Fallback for unsupported URLs, returning the original URL for all keys.
+    ```python
+    url = "https://www.google.com/"
+    links = generate_deep_link(url)
+    print(links)
+    # Output:
+    # {
+    #     "web": "https://www.google.com/",
+    #     "ios": "https://www.google.com/", 
+    #     "android": "https://www.google.com/"
+    # }
+    ```
 
 ## Extending
 
