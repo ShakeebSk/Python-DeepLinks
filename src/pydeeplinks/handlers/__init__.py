@@ -1,10 +1,17 @@
-from .youtube import YouTubeHandler
-from .linkedin import LinkedInHandler
 from ..data_types import HandlerType
+from .facebook import FacebookHandler
+from .linkedin import LinkedInHandler
+from .youtube import YouTubeHandler
 
 handlers_list: list[type[HandlerType]] = [
-    YouTubeHandler,
+    FacebookHandler,
     LinkedInHandler,
+    YouTubeHandler,
 ]
 
-__all__ = ["handlers_list", "YouTubeHandler", "LinkedInHandler"]
+__all__ = [
+    "handlers_list",
+    "FacebookHandler",
+    "LinkedInHandler",
+    "YouTubeHandler",
+]
