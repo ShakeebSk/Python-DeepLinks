@@ -9,9 +9,4 @@ handlers_list: list[type[HandlerType]] = [
     YouTubeHandler,
 ]
 
-__all__ = [
-    "handlers_list",
-    "FacebookHandler",
-    "LinkedInHandler",
-    "YouTubeHandler",
-]
+__all__ = ["handlers_list"] + [handler.__name__ for handler in handlers_list]
